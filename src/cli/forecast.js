@@ -1,3 +1,12 @@
+export function checkNoCacheFlag() {
+    const args = process.argv.slice(2)
+
+    const noCacheIndex = args.indexOf("--no-cache")
+    if (noCacheIndex !== -1) return true
+
+    return false
+}
+
 export function getForecastArgv() {
     const args = process.argv.slice(2)
 
