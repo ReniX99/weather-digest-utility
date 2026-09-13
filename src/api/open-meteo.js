@@ -1,4 +1,22 @@
+process.loadEnvFile(".env")
+
+function getTimeout() {
+    const envTimeout = Number(process.env.REQUEST_TIMEOUT)
+    if (!Number.isNaN(envTimeout)) {
+        return envTimeout
+    }
+    return 5000
+}
+
 export async function get_coordinates(city) {
+    const GEOCODING_API_URL = process.env.GEOCODING_API_URL
+    if (!GEOCODING_API_URL) {
+        console.error(
+            "В переменных окружения на найден URL API для получения координат города",
+        )
+        process.exit(1)
+    }
+
     const params = new URLSearchParams({
         name: city,
         count: 1,
@@ -6,9 +24,11 @@ export async function get_coordinates(city) {
         format: "json",
     })
 
-    const response = await fetch(
-        `https://geocoding-api.open-meteo.com/v1/search?${params}`,
-    )
+    const timeout = getTimeout()
+
+    const response = await fetch(`${GEOCODING_API_URL}?${params}`, {
+        signal: AbortSignal.timeout(timeout),
+    })
     const json = await response.json()
 
     const results = json["results"]
@@ -22,6 +42,14 @@ export async function get_coordinates(city) {
 }
 
 export async function get_forecast(latitude, longitude, days) {
+    const FORECAST_API_URL = process.env.FORECAST_API_URL
+    if (!FORECAST_API_URL) {
+        console.error(
+            "В переменных окружения на найден URL API для получения прогноза погоды",
+        )
+        process.exit(1)
+    }
+
     const params = new URLSearchParams({
         latitude: latitude,
         longitude: longitude,
@@ -30,9 +58,11 @@ export async function get_forecast(latitude, longitude, days) {
         timezone: "auto",
     })
 
-    const response = await fetch(
-        `https://api.open-meteo.com/v1/forecast?${params}`,
-    )
+    const timeout = getTimeout()
+
+    const response = await fetch(`${FORECAST_API_URL}?${params}`, {
+        signal: AbortSignal.timeout(timeout),
+    })
 
     const json = await response.json()
     const daily = json["daily"]
