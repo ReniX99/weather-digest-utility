@@ -1,7 +1,7 @@
 import path from "path"
 import { mkdir, writeFile } from "fs/promises"
 
-export async function write_report(cities) {
+export async function writeReport(cities) {
     cities.forEach(async (city) => {
         const cityName = city.city
         const date = city.dates[0].date

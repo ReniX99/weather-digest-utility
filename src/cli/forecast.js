@@ -1,4 +1,4 @@
-export function get_forecast_argv() {
+export function getForecastArgv() {
     const args = process.argv.slice(2)
 
     const cityIndex = args.indexOf("--city")
@@ -13,8 +13,8 @@ export function get_forecast_argv() {
 
     let days = 3
     if (daysIndex !== -1 && args[daysIndex + 1]) {
-        const argv_days = args[daysIndex + 1]
-        days = Number(argv_days)
+        const argvDays = args[daysIndex + 1]
+        days = Number(argvDays)
 
         if (Number.isNaN(days)) {
             console.error("Аргумент --days не является числом")
