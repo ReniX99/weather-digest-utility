@@ -1,5 +1,6 @@
 import { get_coordinates, get_forecast } from "../api/open-meteo.js"
 import { get_report } from "../format/forecast.js"
+import { write_report } from "../storage/report.js"
 
 export async function get_weather_digest(cities, days) {
     const pipeline = async (city, days) => {
@@ -22,7 +23,7 @@ export async function get_weather_digest(cities, days) {
         cities.map((city) => pipeline(city, days)),
     )
 
-    const result_forecasts = forecasts.map((forecast, index) => ({
+    const processed_forecasts = forecasts.map((forecast, index) => ({
         city: cities[index],
         country: forecast.country,
         latitude: forecast.latitude,
@@ -35,5 +36,6 @@ export async function get_weather_digest(cities, days) {
         })),
     }))
 
-    get_report(result_forecasts)
+    get_report(processed_forecasts)
+    await write_report(processed_forecasts)
 }
