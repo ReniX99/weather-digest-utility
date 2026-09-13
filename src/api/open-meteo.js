@@ -26,19 +26,41 @@ export async function getCoordinates(city) {
 
     const timeout = getTimeout()
 
-    const response = await fetch(`${GEOCODING_API_URL}?${params}`, {
-        signal: AbortSignal.timeout(timeout),
-    })
-    const json = await response.json()
+    try {
+        const response = await fetch(`${GEOCODING_API_URL}?${params}`, {
+            signal: AbortSignal.timeout(timeout),
+        })
 
-    const results = json["results"]
-    if (!results) return
+        if (!response.ok) {
+            const error = new Error()
+            error.status = response.status
 
-    const latitude = results[0]["latitude"]
-    const longitude = results[0]["longitude"]
+            throw error
+        }
 
-    const country = results[0]["country"]
-    return { latitude, longitude, country }
+        const json = await response.json()
+
+        const results = json["results"]
+        if (!results) {
+            const error = new Error()
+            error.status = 400
+
+            throw error
+        }
+
+        const latitude = results[0]["latitude"]
+        const longitude = results[0]["longitude"]
+
+        const country = results[0]["country"]
+        return { latitude, longitude, country }
+    } catch (error) {
+        if (error.status >= 400 && error.status < 500) {
+            console.error(`Неверно указанный город: ${city}. Попробуйте снова`)
+        } else {
+            console.error("Ошибка сервера. Попробуйте позже")
+        }
+        process.exit(1)
+    }
 }
 
 export async function getForecast(latitude, longitude, days) {
@@ -60,26 +82,42 @@ export async function getForecast(latitude, longitude, days) {
 
     const timeout = getTimeout()
 
-    const response = await fetch(`${FORECAST_API_URL}?${params}`, {
-        signal: AbortSignal.timeout(timeout),
-    })
+    try {
+        const response = await fetch(`${FORECAST_API_URL}?${params}`, {
+            signal: AbortSignal.timeout(timeout),
+        })
 
-    const json = await response.json()
-    const daily = json["daily"]
+        if (!response.ok) {
+            const error = new Error()
+            error.status = response.status
 
-    if (!daily) {
-        console.error()
-    }
+            throw error
+        }
 
-    const dates = daily["time"]
-    const minTemperatures = daily["temperature_2m_min"]
-    const maxTemperatures = daily["temperature_2m_max"]
-    const precipitationSums = daily["precipitation_sum"]
+        const json = await response.json()
+        const daily = json["daily"]
 
-    return {
-        dates,
-        minTemperatures,
-        maxTemperatures,
-        precipitationSums,
+        if (!daily) {
+            console.error()
+        }
+
+        const dates = daily["time"]
+        const minTemperatures = daily["temperature_2m_min"]
+        const maxTemperatures = daily["temperature_2m_max"]
+        const precipitationSums = daily["precipitation_sum"]
+
+        return {
+            dates,
+            minTemperatures,
+            maxTemperatures,
+            precipitationSums,
+        }
+    } catch (error) {
+        if (error.status >= 400 && error.status < 500) {
+            console.error(`Ошбика координат. Попробуйте снова`)
+        } else {
+            console.error("Ошибка сервера. Попробуйте позже")
+        }
+        process.exit(1)
     }
 }
