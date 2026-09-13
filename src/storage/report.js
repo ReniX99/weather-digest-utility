@@ -10,8 +10,12 @@ export async function writeReport(cities) {
         const dir = path.join(process.cwd(), "reports")
         const filePath = path.join(dir, reportName)
 
-        await mkdir(dir, { recursive: true })
+        try {
+            await mkdir(dir, { recursive: true })
 
-        await writeFile(filePath, JSON.stringify(city, null, 2), "utf-8")
+            await writeFile(filePath, JSON.stringify(city, null, 2), "utf-8")
+        } catch {
+            console.log(`Ошибка записи отчёта ${filePath}`)
+        }
     })
 }
