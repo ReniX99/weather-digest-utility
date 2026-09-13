@@ -1,0 +1,399 @@
+{
+  "info": {
+    "_postman_id": "365cd5be-6069-489e-b071-18ae65911080",
+    "name": "Forecast",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40150618"
+  },
+  "item": [
+    {
+      "name": "Get Forecast",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}?latitude={{latitude}}&longitude={{longitude}}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&forecast_days={{days}}&timezone=auto",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "query": [
+            {
+              "key": "latitude",
+              "value": "{{latitude}}"
+            },
+            {
+              "key": "longitude",
+              "value": "{{longitude}}"
+            },
+            {
+              "key": "daily",
+              "value": "temperature_2m_max,temperature_2m_min,precipitation_sum"
+            },
+            {
+              "key": "forecast_days",
+              "value": "{{days}}"
+            },
+            {
+              "key": "timezone",
+              "value": "auto"
+            }
+          ]
+        }
+      },
+      "response": [
+        {
+          "name": "200: Успешно получены температура и количество осадков за несколько дней",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}?latitude={{latitude}}&longitude={{longitude}}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&forecast_days={{days}}&timezone=auto",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "{{latitude}}"
+                },
+                {
+                  "key": "longitude",
+                  "value": "{{longitude}}"
+                },
+                {
+                  "key": "daily",
+                  "value": "temperature_2m_max,temperature_2m_min,precipitation_sum"
+                },
+                {
+                  "key": "forecast_days",
+                  "value": "{{days}}"
+                },
+                {
+                  "key": "timezone",
+                  "value": "auto"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Sun, 13 Sep 2026 19:22:55 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "deflate"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"latitude\": 37.625,\n    \"longitude\": 55.75,\n    \"generationtime_ms\": 0.05459785461425781,\n    \"utc_offset_seconds\": 12600,\n    \"timezone\": \"Asia/Tehran\",\n    \"timezone_abbreviation\": \"GMT+3:30\",\n    \"elevation\": 452,\n    \"daily_units\": {\n        \"time\": \"iso8601\",\n        \"temperature_2m_max\": \"°C\",\n        \"temperature_2m_min\": \"°C\",\n        \"precipitation_sum\": \"mm\"\n    },\n    \"daily\": {\n        \"time\": [\n            \"2026-09-13\",\n            \"2026-09-14\",\n            \"2026-09-15\"\n        ],\n        \"temperature_2m_max\": [\n            30.1,\n            28.6,\n            30.9\n        ],\n        \"temperature_2m_min\": [\n            16,\n            18.3,\n            16.9\n        ],\n        \"precipitation_sum\": [\n            0,\n            0,\n            0\n        ]\n    }\n}"
+        },
+        {
+          "name": "200: Успешно получены температура и количество осадков за один день",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}?latitude={{latitude}}&longitude={{longitude}}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&forecast_days={{days}}&timezone=auto",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "{{latitude}}"
+                },
+                {
+                  "key": "longitude",
+                  "value": "{{longitude}}"
+                },
+                {
+                  "key": "daily",
+                  "value": "temperature_2m_max,temperature_2m_min,precipitation_sum"
+                },
+                {
+                  "key": "forecast_days",
+                  "value": "{{days}}"
+                },
+                {
+                  "key": "timezone",
+                  "value": "auto"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Sun, 13 Sep 2026 19:36:38 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "deflate"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"latitude\": 37.625,\n    \"longitude\": 55.75,\n    \"generationtime_ms\": 0.05125999450683594,\n    \"utc_offset_seconds\": 12600,\n    \"timezone\": \"Asia/Tehran\",\n    \"timezone_abbreviation\": \"GMT+3:30\",\n    \"elevation\": 452,\n    \"daily_units\": {\n        \"time\": \"iso8601\",\n        \"temperature_2m_max\": \"°C\",\n        \"temperature_2m_min\": \"°C\",\n        \"precipitation_sum\": \"mm\"\n    },\n    \"daily\": {\n        \"time\": [\n            \"2026-09-13\"\n        ],\n        \"temperature_2m_max\": [\n            30.1\n        ],\n        \"temperature_2m_min\": [\n            16\n        ],\n        \"precipitation_sum\": [\n            0\n        ]\n    }\n}"
+        },
+        {
+          "name": "400: Передано значение долготы, превышающее 90 градусов",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}?latitude={{latitude}}&longitude={{longitude}}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&forecast_days={{days}}&timezone=auto",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "{{latitude}}"
+                },
+                {
+                  "key": "longitude",
+                  "value": "{{longitude}}"
+                },
+                {
+                  "key": "daily",
+                  "value": "temperature_2m_max,temperature_2m_min,precipitation_sum"
+                },
+                {
+                  "key": "forecast_days",
+                  "value": "{{days}}"
+                },
+                {
+                  "key": "timezone",
+                  "value": "auto"
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Sun, 13 Sep 2026 19:38:27 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "93"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "deflate"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": true,\n    \"reason\": \"Latitude must be in range of -90 to 90°. Given: 237.61781.\"\n}"
+        },
+        {
+          "name": "400: Передано значение широты меньше 180 градусов",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}?latitude={{latitude}}&longitude={{longitude}}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&forecast_days={{days}}&timezone=auto",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "{{latitude}}"
+                },
+                {
+                  "key": "longitude",
+                  "value": "{{longitude}}"
+                },
+                {
+                  "key": "daily",
+                  "value": "temperature_2m_max,temperature_2m_min,precipitation_sum"
+                },
+                {
+                  "key": "forecast_days",
+                  "value": "{{days}}"
+                },
+                {
+                  "key": "timezone",
+                  "value": "auto"
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Sun, 13 Sep 2026 19:39:38 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "94"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "deflate"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": true,\n    \"reason\": \"Longitude must be in range of -180 to 180°. Given: -255.75204.\"\n}"
+        },
+        {
+          "name": "400: Передано отрицательное количество дней",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}?latitude={{latitude}}&longitude={{longitude}}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&forecast_days={{days}}&timezone=auto",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "{{latitude}}"
+                },
+                {
+                  "key": "longitude",
+                  "value": "{{longitude}}"
+                },
+                {
+                  "key": "daily",
+                  "value": "temperature_2m_max,temperature_2m_min,precipitation_sum"
+                },
+                {
+                  "key": "forecast_days",
+                  "value": "{{days}}"
+                },
+                {
+                  "key": "timezone",
+                  "value": "auto"
+                }
+              ]
+            }
+          },
+          "status": "Bad Request",
+          "code": 400,
+          "_postman_previewlanguage": null,
+          "header": [
+            {
+              "key": "Date",
+              "value": "Sun, 13 Sep 2026 19:40:13 GMT"
+            },
+            {
+              "key": "Content-Type",
+              "value": "application/json; charset=utf-8"
+            },
+            {
+              "key": "Content-Length",
+              "value": "86"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            },
+            {
+              "key": "Content-Encoding",
+              "value": "deflate"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n    \"error\": true,\n    \"reason\": \"Forecast days is invalid. Allowed range 0 to 16. Given 16.\"\n}"
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    },
+    {
+      "key": "longitude",
+      "value": ""
+    },
+    {
+      "key": "latitude",
+      "value": ""
+    },
+    {
+      "key": "days",
+      "value": ""
+    }
+  ]
+}
