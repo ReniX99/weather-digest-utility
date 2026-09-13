@@ -8,7 +8,7 @@ function getTimeout() {
     return 5000
 }
 
-export async function get_coordinates(city) {
+export async function getCoordinates(city) {
     const GEOCODING_API_URL = process.env.GEOCODING_API_URL
     if (!GEOCODING_API_URL) {
         console.error(
@@ -41,7 +41,7 @@ export async function get_coordinates(city) {
     return { latitude, longitude, country }
 }
 
-export async function get_forecast(latitude, longitude, days) {
+export async function getForecast(latitude, longitude, days) {
     const FORECAST_API_URL = process.env.FORECAST_API_URL
     if (!FORECAST_API_URL) {
         console.error(

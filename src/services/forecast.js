@@ -1,12 +1,12 @@
-import { get_coordinates, get_forecast } from "../api/open-meteo.js"
-import { get_report } from "../format/forecast.js"
-import { write_report } from "../storage/report.js"
+import { getCoordinates, getForecast } from "../api/open-meteo.js"
+import { getReport } from "../format/forecast.js"
+import { writeReport } from "../storage/report.js"
 
-export async function get_weather_digest(cities, days) {
+export async function getWeatherDigest(cities, days) {
     const pipeline = async (city, days) => {
-        const { latitude, longitude, country } = await get_coordinates(city)
+        const { latitude, longitude, country } = await getCoordinates(city)
         const { dates, minTemperatures, maxTemperatures, precipitationSums } =
-            await get_forecast(latitude, longitude, days)
+            await getForecast(latitude, longitude, days)
 
         return {
             country,
@@ -23,7 +23,7 @@ export async function get_weather_digest(cities, days) {
         cities.map((city) => pipeline(city, days)),
     )
 
-    const processed_forecasts = forecasts.map((forecast, index) => ({
+    const processedForecasts = forecasts.map((forecast, index) => ({
         city: cities[index],
         country: forecast.country,
         latitude: forecast.latitude,
@@ -36,6 +36,6 @@ export async function get_weather_digest(cities, days) {
         })),
     }))
 
-    get_report(processed_forecasts)
-    await write_report(processed_forecasts)
+    getReport(processedForecasts)
+    await writeReport(processedForecasts)
 }
